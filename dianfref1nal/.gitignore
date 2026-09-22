@@ -1,0 +1,16 @@
+# CMake 编译产物
+build/
+cmake-build-*/
+
+# 编译产生的后缀文件
+*.exe
+*.obj
+*.o
+*.a
+*.d
+*.so
+*.dll
+*.out
+
+# VS Code 配置
+.vscode/

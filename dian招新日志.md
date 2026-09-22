@@ -206,3 +206,9 @@ project(BoxTest)	给项目起个名字。	名字随意，纯英文即可。
 set(CMAKE_CXX_STANDARD 11)	设置 C++ 标准为 C++11。	建议以后改为 17 以支持新特性。
 set(CMAKE_CXX_STANDARD_REQUIRED ON)	强制要求编译器支持指定标准，不支持就报错。	防止编译器悄悄降级。
 add_executable(box_app mltf_class.cpp Box.cpp)	核心指令。告诉 CMake 生成一个名叫 box_app 的可执行文件，由后面的 .cpp 源文件编译而成。	如果新增了 .cpp 文件，必须加在这里。
+
+## 9.22
+
+### 正式开始做1.1
+
+Item基本功能已完成，达到1.1的要求

@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)     #强制要求编译器支持
 include_directories(${CMAKE_SOURCE_DIR}/include)        #去include里面找头文件
 add_executable(dian
     src/main.cpp 
-    src/Item.cpp)      #可执行文件名,源文件1,2......
+    src/Item.cpp
+    src/Cart.cpp)      #可执行文件名,源文件1,2......

@@ -1,8 +1,8 @@
 #include "Item.hpp"
 #include <iostream>
 #include <string>
-Item::Item(std::string name0,
-    std::string code0,
+Item::Item(const std::string &name0,
+    const std::string &code0,
     double price0,
     int stock0) {
     name=name0;

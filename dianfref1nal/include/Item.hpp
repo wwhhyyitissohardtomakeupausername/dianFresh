@@ -13,6 +13,9 @@ class Item{
         std::string getcode()const {return code;}
         double getprice()const {return price;}
         int getstock()const {return stock;}
+
+        void setname(std::string newname) {name=newname;}
+        void setcode(std::string newcode) {code=newcode;}
         void setstock(int newstock) {stock=newstock;}
         void setprice(double newprice) {price=newprice;}
 };

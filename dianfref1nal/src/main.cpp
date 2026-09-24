@@ -6,12 +6,12 @@
 #include <map>
 #include "Item.hpp"
 #include "Cart.hpp"
-std::vector<Item> items(3);
+std::map<std::string,Item> items;
 Cart cart;
 int main() {
-    items[0]=Item("Cola","001",4.00,70);
-    items[1]=Item("Lollipop","002",0.50,80);
-    items[2]=Item("Noodles","003",6.00,20);
+    items["001"]=Item("Cola","001",4.00,70);
+    items["002"]=Item("Lollipop","002",0.50,80);
+    items["003"]=Item("Noodles","003",6.00,20);
     while(true) {
         std::string str,tmp;
         std::getline(std::cin, str);
@@ -30,10 +30,10 @@ int main() {
             while(iss >> tmp) {
                 if(tmp[0]=='-') {
                     tmp=tmp.substr(1);
-                    cart.rdc_item(tmp);
+                    cart.rdc_item(items[tmp]);
                 }
                 else{
-                    cart.add_item(tmp);
+                    cart.add_item(items[tmp]);
                 }
             }
         }

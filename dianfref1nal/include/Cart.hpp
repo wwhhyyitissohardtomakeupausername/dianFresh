@@ -6,8 +6,8 @@ class Cart{
     private:
         std::map<std::string,Item> cart;
     public:
-        void add_item(std::string code);
-        void rdc_item(std::string code);
+        void add_item(const Item &addit);
+        void rdc_item(const Item &rdcif);
         void print_receipt()const;
         void drop();
         void checkout();

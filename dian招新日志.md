@@ -111,6 +111,10 @@ stream机制没运行起来，先建了个streamtest试一下。
 ### 改名引发的Git指令学习
 
 熟悉了远程重命名和重定向，过程有点坎坷，D老师总结belike
+
+
+
+```
     今天这一顿操作，虽然踩了不少坑，但你实际上已经掌握了 Git 日常工作中 80% 的高阶操作。为了方便你以后随时查阅，我把我们用到过的所有指令按功能分类整理成了一份**速查表**：
     ### 📁 一、 终端与文件操作 (PowerShell)
     *   `cd 文件夹名`：进入指定的文件夹。
@@ -122,7 +126,6 @@ stream机制没运行起来，先建了个streamtest试一下。
     ### 📝 三、 Git 提交流程（最常用）
     *   `git add .`：把当前目录下所有修改过的文件添加到“暂存区”。（注意最后有个点 `.`）
     *   `git commit -m "提交信息"`：把暂存区的内容提交到本地仓库，`-m` 后面跟着你写的备注（比如 "修复了bug"）。
-
     ### 🌐 四、 远程仓库管理 (GitHub)
     *   `git remote add origin <URL>`：首次关联一个远程仓库（`origin` 是远程仓库的默认别名）。
     *   `git remote set-url origin <URL>`：**修改**已关联的远程仓库地址（当你重命名了 GitHub 仓库或改了地址时使用）。
@@ -144,6 +147,7 @@ stream机制没运行起来，先建了个streamtest试一下。
     *   `F2`：在资源管理器中重命名选中的文件或文件夹。
     *   `Ctrl + ~`：打开/关闭底部集成终端。
     *   `Ctrl + Shift + P` -> 输入 `Reload Window` -> 回车：重新加载 VS Code 窗口（当左侧源代码管理面板卡顿、不刷新时，用这招瞬间治好）。
+```
 
 ### 学习了函数、指针、引用和时间查询的基本内容
 
@@ -169,8 +173,9 @@ stream机制没运行起来，先建了个streamtest试一下。
 
 ### D老师教我CMake
 
-一、mkdir 是什么意思？
-mkdir 是 Make Directory 的缩写，意思是“创建文件夹（目录）”。
+```
+
+一、mkdir 是什么意思？mkdir 是 Make Directory 的缩写，意思是“创建文件夹（目录）”。
 
 归属：它是操作系统的终端命令（在 Windows PowerShell、Mac、Linux 中通用），不属于 CMake。
 
@@ -180,35 +185,34 @@ mkdir 是 Make Directory 的缩写，意思是“创建文件夹（目录）”�
 
 为什么用：为了把编译产生的中间文件（.obj、.exe）和源代码文件（.cpp、.hpp）隔离开，保持项目目录整洁。
 
-二、CMake 相关指令总结
-为了方便你以后复习和写进 dian招新日志.md，我把刚才的操作分为两部分：终端命令 和 CMakeLists.txt 内容。
+二、CMake 相关指令总结为了方便你以后复习和写进 dian招新日志.md，我把刚才的操作分为两部分：终端命令 和 CMakeLists.txt 内容。
 
-1. 终端命令（手动挡工作流）
-⚠️ 注意：cd、mkdir、.\ 属于系统终端命令，不是 CMake 发明的，但它们是 CMake 构建流程的好搭档。
+1. 终端命令（手动挡工作流）⚠️ 注意：cd、mkdir、.\ 属于系统终端命令，不是 CMake 发明的，但它们是 CMake 构建流程的好搭档。
 
-指令	作用	归属
-cmake --version	检查 CMake 是否安装，输出版本号。	CMake
-mkdir build	创建一个叫 build 的文件夹。	终端 (系统)
-cd build	进入 build 文件夹。	终端 (系统)
-cmake -G "MinGW Makefiles" ..	配置阶段。读取上一级目录的 CMakeLists.txt，生成 Makefile。-G 指定使用 MinGW 生成器。	CMake
-cmake --build .	构建阶段。读取当前目录的 Makefile，调用 g++ 编译代码并链接成 .exe。	CMake
-.\box_app.exe	运行程序。. 代表当前目录，运行刚才编译出来的可执行文件。	终端 (系统)
-💡 日常口诀（配置一次，构建无数次）：
-第一次：mkdir build -> cd build -> cmake -G "MinGW Makefiles" ..
-以后每次改代码：cd build -> cmake --build . -> .\box_app.exe
+指令 作用 归属cmake --version 检查 CMake 是否安装，输出版本号。 CMakemkdir build 创建一个叫 build 的文件夹。 终端 (系统)cd build 进入 build 文件夹。 终端 (系统)cmake -G "MinGW Makefiles" .. 配置阶段。读取上一级目录的 CMakeLists.txt，生成 Makefile。-G 指定使用 MinGW 生成器。 CMakecmake --build . 构建阶段。读取当前目录的 Makefile，调用 g++ 编译代码并链接成 .exe。 CMake.\box_app.exe 运行程序。. 代表当前目录，运行刚才编译出来的可执行文件。 终端 (系统)💡 日常口诀（配置一次，构建无数次）：第一次：mkdir build -> cd build -> cmake -G "MinGW Makefiles" ..以后每次改代码：cd build -> cmake --build . -> .\box_app.exe
 
-2. CMakeLists.txt 文件中的指令（项目图纸）
-这是你写在 CMakeLists.txt 里的内容，是 CMake 的核心配置。
+2. CMakeLists.txt 文件中的指令（项目图纸）这是你写在 CMakeLists.txt 里的内容，是 CMake 的核心配置。
 
-指令	作用	备注
-cmake_minimum_required(VERSION 3.10)	声明项目需要的 CMake 最低版本。	必须写在第一行。
-project(BoxTest)	给项目起个名字。	名字随意，纯英文即可。
-set(CMAKE_CXX_STANDARD 11)	设置 C++ 标准为 C++11。	建议以后改为 17 以支持新特性。
-set(CMAKE_CXX_STANDARD_REQUIRED ON)	强制要求编译器支持指定标准，不支持就报错。	防止编译器悄悄降级。
-add_executable(box_app mltf_class.cpp Box.cpp)	核心指令。告诉 CMake 生成一个名叫 box_app 的可执行文件，由后面的 .cpp 源文件编译而成。	如果新增了 .cpp 文件，必须加在这里。
+指令 作用 备注cmake_minimum_required(VERSION 3.10) 声明项目需要的 CMake 最低版本。 必须写在第一行。project(BoxTest) 给项目起个名字。 名字随意，纯英文即可。set(CMAKE_CXX_STANDARD 11) 设置 C++ 标准为 C++11。 建议以后改为 17 以支持新特性。set(CMAKE_CXX_STANDARD_REQUIRED ON) 强制要求编译器支持指定标准，不支持就报错。 防止编译器悄悄降级。add_executable(box_app mltf_class.cpp Box.cpp) 核心指令。告诉 CMake 生成一个名叫 box_app 的可执行文件，由后面的 .cpp 源文件编译而成。 如果新增了 .cpp 文件，必须加在这里。
+
+```
 
 ## 9.22
 
 ### 正式开始做1.1
 
 Item基本功能已完成，达到1.1的要求
+
+## 9.23
+
+### 编写class Cart相关
+
+## 9.24
+
+### Class Cart设置
+
+首先，选`map`
+
+其次，key选`std::string`，存条码
+
+最后，值选`Item`，方便打印信息，`cart[code].stock`表示购买数量

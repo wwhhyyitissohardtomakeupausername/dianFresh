@@ -9,10 +9,10 @@ class Item{
         Item()=default;
         Item(std::string name0,std::string code0,
         double price0,int stock0);
-        std::string getname()const;
-        std::string getcode()const;
-        double getprice()const;
-        int getstock()const;
-        void setstock(int newstock);
-        void setprice(double newprice);
+        std::string getname()const {return name;}       //简单功能直接在hpp里面实现
+        std::string getcode()const {return code;}
+        double getprice()const {return price;}
+        int getstock()const {return stock;}
+        void setstock(int newstock) {stock=newstock;}
+        void setprice(double newprice) {price=newprice;}
 };

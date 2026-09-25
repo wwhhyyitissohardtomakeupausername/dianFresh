@@ -51,8 +51,9 @@ void Cart::print_receipt()const {
     std::snprintf(sTot,sizeof(sTot),"=%.2f",total);
     printf("%-10s%10s\n","Total",sTot);
 }
-void Cart::checkout() {
+Sale Cart::checkout() {
     print_receipt();
     Sale sale(cart,total);
     drop();
+    return sale;
 }

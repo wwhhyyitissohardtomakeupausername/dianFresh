@@ -237,7 +237,7 @@ sale有day和id双重属性
 
 ### cart的修改
 
-total动态
+total动态，考虑现实情况，不会有在结账的时候改变价格的情况，只读进来是多少就认多少
 
 ### Sale和SaleManager的使用
 
@@ -245,7 +245,7 @@ Sale到底要不要？
 
 还是要，作为一个中转，当个接口
 
-SaleManage要涉及哪些功能？
+SaleManager要涉及哪些功能？
 
 1.追加写⼊⽂件
 
@@ -260,3 +260,13 @@ SaleManage要涉及哪些功能？
 ## 9.25
 
 ### SaleManager的使用
+
+如果在cart::checkout里面调用，数据存哪里？能达到当日内内存能直接调用，新的一天清空内存但信息存在文件里面吗？
+
+### 解决方案
+
+重新划定`Cart.checkout()`职责，reutrn本次记录，打印，清空。这样Cart的实际就可以彻底结束了，把剩下的交给SaleManager。
+
+Sale类似于Item的作用，露接口，小的临时的对象
+
+SaleManager当一个大的对象，在总程序中声明一个

@@ -6,8 +6,11 @@
 #include <map>
 #include "Item.hpp"
 #include "Cart.hpp"
+#include "Sale.hpp"
+#include "SaleManager.hpp"
 std::map<std::string,Item> items;
 Cart cart;
+SaleManager manager;
 int main() {
     items["001"]=Item("Cola","001",4.00,70);
     items["002"]=Item("Lollipop","002",0.50,80);

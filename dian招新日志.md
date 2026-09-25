@@ -281,6 +281,8 @@ SaleManager当一个大的对象，在总程序中声明一个
 
 初想法：里面`std::vector<Sale> daily_record;`，外面`std::vector <SaleManager> manager;`，daily_record下标表示一日流水号，manager下标表示天数
 
-不行，太过复杂。就定义一个SaleManager，
+不行，太过复杂，太丑了。就定义一个SaleManager。
+
+### CSV文件读取、统一转换与屏幕输出
 
 

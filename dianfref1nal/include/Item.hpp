@@ -4,7 +4,7 @@ class Item{     //只是做一个接口,体现一下封装思想
     private:
         std::string name{},code{};
         double price=0.0;
-        int stock=0;
+        int stock=0;        //复用,是数量方面含义
     public:
         Item()=default;
         Item(const std::string &name0,const std::string &code0,

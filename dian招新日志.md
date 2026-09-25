@@ -233,7 +233,7 @@ sale有day和id双重属性
 
 方案二：sale里面放结构体vector，外面再做一个vector下表为day，此时sale代表一天的流水
 
-决定，Sale管临时流水（内存），FileMangement管长期（文件）
+~~决定，Sale管临时流水（内存），FileMangement管长期（文件）~~
 
 ### cart的修改
 
@@ -265,8 +265,22 @@ SaleManager要涉及哪些功能？
 
 ### 解决方案
 
+**这两天关于Cart/Sale/SaleManager的责任划分不够清晰，导致前前后后思路混乱。究其根本是我对类的设计经验不足，可以专门学一下。**
+
 重新划定`Cart.checkout()`职责，reutrn本次记录，打印，清空。这样Cart的实际就可以彻底结束了，把剩下的交给SaleManager。
 
 Sale类似于Item的作用，露接口，小的临时的对象
 
 SaleManager当一个大的对象，在总程序中声明一个
+
+### 代码健壮性
+
+后面来加，但现在默认输入完全合理。
+
+### SaleManager
+
+初想法：里面`std::vector<Sale> daily_record;`，外面`std::vector <SaleManager> manager;`，daily_record下标表示一日流水号，manager下标表示天数
+
+不行，太过复杂。就定义一个SaleManager，
+
+

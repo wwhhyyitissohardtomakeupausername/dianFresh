@@ -7,7 +7,7 @@
 #include <string>
 #include <map>
 void Cart::add_item(const Item &add_it) {     //直接只读Item进来
-    std::string code=add_it.get_code();
+    const std::string& code=add_it.get_code();
     double price=add_it.get_price();
     this->cart[code].set_stock(this->cart[code].get_stock()+1);
     this->cart[code].set_price(price);
@@ -16,7 +16,7 @@ void Cart::add_item(const Item &add_it) {     //直接只读Item进来
     total+=price;
 }
 void Cart::rdc_item(const Item &rdc_it) {
-    std::string code=rdc_it.get_code();
+    const std::string& code=rdc_it.get_code();
     this->cart[code].set_stock(this->cart[code].get_stock()-1);
     if(!this->cart[code].get_stock()) {
         cart.erase(code);
@@ -33,7 +33,7 @@ void Cart::print_receipt()const {
         // std::cout<<"Successfully get_price"<<pri<<std::endl;
         int sto=p.second.get_stock();
         // std::cout<<"Successfully getget_stock"<<sto<<std::endl;
-        std::string name=p.second.get_name();
+        const std::string& name=p.second.get_name();
         // std::cout<<"Successfully get_name"<<name<<std::endl;
 
         char sSto[32];

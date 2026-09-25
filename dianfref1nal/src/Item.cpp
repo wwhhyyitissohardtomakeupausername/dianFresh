@@ -13,4 +13,4 @@ Item::Item(const std::string &name0,
     // std::cout<<"\ncode:"<<code;
     // std::cout<<"\nprice:"<<price;
     // std::cout<<"\nstock:"<<stock;
-}       //初始化物品信息
+}       //设置物品信息

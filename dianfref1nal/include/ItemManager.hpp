@@ -18,4 +18,10 @@ class ItemManager {
 
         void print() const;
         void checkout(const std::map<std::string, Item>& cartlist);
+        const Item* find(const std::string& code) const {
+            auto it = items.find(code);
+            if (it == items.end()) return nullptr;
+            return &it->second;
+        }
+        bool empty() const { return items.empty(); }
 };

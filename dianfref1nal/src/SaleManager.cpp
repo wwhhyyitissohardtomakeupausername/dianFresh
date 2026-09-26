@@ -26,7 +26,7 @@ namespace {     //匿名命名空间
         out_put<<','<<sale.get_total()<<'\n';
     }
     void Sale_print(const Sale& sale) {     //屏幕输出流水函数
-        printf("%5d%10s",sale.get_id(),sale.get_time().c_str());     //第一次要输出流水号和时间
+        printf("%-5d%-10s",sale.get_id(),sale.get_time().c_str());     //第一次要输出流水号和时间
         bool check_start=true;
         for(const auto& [the_code,the_item]:sale.get_items()) {
             //遍历sale.getitems()
@@ -38,9 +38,9 @@ namespace {     //匿名命名空间
             "%sx%d",
             the_item.get_name().c_str(),
             the_item.get_stock());      //超级拼装    
-            printf("%15s",sNameAndCount);       //按格式输出名称和数量
+            printf("%-15s",sNameAndCount);       //按格式输出名称和数量
         }
-        printf("%10.2f\n",sale.get_total());       //输出一次总和
+        printf("%-10.2f\n",sale.get_total());       //输出一次总和
     }
     Sale CSVtransform(const std::string& Date,
     const std::string& No,

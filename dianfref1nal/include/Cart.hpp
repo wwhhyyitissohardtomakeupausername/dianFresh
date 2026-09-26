@@ -13,4 +13,19 @@ class Cart{
         void print_receipt()const;      //打印收据
         void drop(){cart.clear();total=0;}      //清空购物车并价格归零
         Sale checkout();        //最后返回这次订单的信息
+        const std::map<std::string, Item>& items() const { return cart; }
+        int get_qty(const std::string& code) const {
+            auto it = cart.find(code);
+            if (it == cart.end()) return 0;
+            return it->second.get_stock();
+        }
+        bool has(const std::string& code) const {
+            return cart.find(code) != cart.end();
+        }
+        const Item* find_item(const std::string& code) const {
+            auto it = cart.find(code);
+            if (it == cart.end()) return nullptr;
+            return &it->second;
+        }
+        bool empty() const { return cart.empty(); }
 };

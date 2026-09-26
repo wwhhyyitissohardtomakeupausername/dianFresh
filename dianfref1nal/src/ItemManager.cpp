@@ -61,6 +61,7 @@ void ItemManager::reduce_stock(const std::string& code, int qty) {
 void ItemManager::print() const {
     printf("%-10s%-5s%-5s%-10s\n","Item","No.","Pri.","Stock");
     for(int i=0;i<+30;i++){printf("-");}
+    printf("\n");
     for (const auto& [code, item] : items) {
         std::printf("%-10s%-5s%-5.2f%-10d\n",
         item.get_name().c_str(),

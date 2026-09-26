@@ -15,6 +15,8 @@ void POSsystem::run() {
         itemmanager.add(Item("Noodles",  "003", 6.00, 20));
     }
 
+    salemanager.init(); 
+    
     std::cout << "=== Dian POS ===\n";
     std::cout << "Type 'exit' or 'quit' to quit.\n";
 

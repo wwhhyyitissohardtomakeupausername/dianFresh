@@ -16,14 +16,8 @@ add_executable(dian
     src/POSsystem.cpp
 )
 
-# 1. 确保 build 目录下有一个 data 文件夹
-file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/data")
-
-# 2. 如果 build/data/warehouse.csv 不存在，说明是首次运行或数据被清空
-# 这时候才从外层初始备份拷贝过去，以后再也不覆盖
-if(NOT EXISTS "${CMAKE_BINARY_DIR}/data/warehouse.csv")
-    message(STATUS "Initializing data from external backup...")
-    file(COPY "${CMAKE_SOURCE_DIR}/data/warehouse.csv" DESTINATION "${CMAKE_BINARY_DIR}/data")
-    # 如果 sales.csv 也要初始化，把下面这行加进 if 里
-    file(COPY "${CMAKE_SOURCE_DIR}/data/sales.csv" DESTINATION "${CMAKE_BINARY_DIR}/data")
-endif()
+add_custom_command(TARGET dian POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_SOURCE_DIR}/data"
+    "$<TARGET_FILE_DIR:dian>/data"
+)

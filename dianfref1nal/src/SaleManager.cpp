@@ -89,7 +89,7 @@ void SaleManager::add_record(Sale sale) {       //1.追加写入文件
 }
 void SaleManager::sales_check(int day) {        //2.查看当日所有销售记录及总营业额，省略 day 参数默认为今天
     //输出表头
-    printf("Date:%d\n%5s%10s%15s%10s\n"
+    printf("Date:%d\n%-5s%-10s%-15s%-10s\n"
         ,day,"No.","Time","Items","Ament");
     for(int i=0;i<=40;i++) printf("-");
     printf("\n");
@@ -130,4 +130,35 @@ void SaleManager::new_day() {
     daily_record.push_back(Sale());
     current_day++;
     id_next=1;
+}
+void SaleManager::init() {
+    std::ifstream in_put("data/sales.csv");
+    if (!in_put) return; // 文件不存在直接返回，不用恢复
+
+    std::string line;
+    int max_day = 1;
+    int max_id = 0;
+
+    while (std::getline(in_put, line)) {
+        if (line.empty()) continue;
+        std::istringstream iss(line);
+        std::string DateStr, NoStr;
+        // CSV格式: Date,No,Time,Items,Ament
+        std::getline(iss, DateStr, ',');
+        std::getline(iss, NoStr, ',');
+        
+        try {
+            int d = std::stoi(DateStr);
+            int id = std::stoi(NoStr);
+            if (d > max_day) max_day = d;
+            if (id > max_id) max_id = id; // 注意：这里简化处理，取全局最大ID，后面newday时max_id会重置
+        } catch (...) {}
+    }
+
+    current_day = max_day;
+    id_next = max_id + 1; // 下一个流水号从最大ID+1开始
+    
+    // 重置当天内存记录并填入占位符
+    daily_record.clear();
+    daily_record.push_back(Sale());
 }

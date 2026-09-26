@@ -9,6 +9,7 @@ class Item{     //只是做一个接口,体现一下封装思想
         Item()=default;
         Item(const std::string &name0,const std::string &code0,
         double price0,int stock0);
+        
         const std::string& get_name()const {return name;}       //简单功能直接在hpp里面实现
         const std::string& get_code()const {return code;}
         double get_price()const {return price;}

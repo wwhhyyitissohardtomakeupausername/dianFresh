@@ -1,7 +1,6 @@
 #include "Item.hpp"
 #include "Cart.hpp"
 #include "Sale.hpp"
-#include "SaleManager.hpp"
 #include <iostream>
 #include <cstdio>
 #include <string>

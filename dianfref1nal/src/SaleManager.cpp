@@ -1,6 +1,6 @@
-#include "SaleManager.hpp"
 #include "Item.hpp"
 #include "Sale.hpp"
+#include "SaleManager.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstdio>
@@ -25,7 +25,7 @@ namespace {     //匿名命名空间
         }
         out_put<<','<<sale.get_total()<<'\n';
     }
-    void Sale_print(const Sale& sale) {
+    void Sale_print(const Sale& sale) {     //屏幕输出流水函数
         printf("%5d%10s",sale.get_id(),sale.get_time().c_str());     //第一次要输出流水号和时间
         bool check_start=true;
         for(const auto& [the_code,the_item]:sale.get_items()) {
@@ -46,14 +46,13 @@ namespace {     //匿名命名空间
     const std::string& No,
     const std::string& Time,
     const std::string& Items,
-    const std::string& Ament) {
+    const std::string& Ament) {     //CSV文件解读
         std::map<std::string, Item> item_map;
         // Items 形如: name:stock:code:price;name:stock:code:price;...
-        std::istringstream item_stream(Items);
+        std::istringstream item_stream(Items);      //把Items构造为一个输入流
         std::string one_item;
-        while (std::getline(item_stream, one_item, ';')) {
-            if (one_item.empty()) continue;   // 末尾可能多一个分号
-        
+
+        while (std::getline(item_stream, one_item, ';')) {      //物品之间用分号隔开
             std::istringstream field(one_item);
             std::string name, stock_str, code, price_str;
             std::getline(field, name,      ':');
